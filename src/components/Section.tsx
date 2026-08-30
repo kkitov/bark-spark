@@ -19,7 +19,7 @@ export default function Section({
     <section
       id={id}
        className={[
-        "relative min-h-screen flex flex-col justify-center",
+        "relative min-h-screen w-full max-w-full flex flex-col justify-center",
         "px-6 md:px-16",
         "py-20 md:py-28",              // вътрешно отстояние в секцията
         "scroll-mt-24 md:scroll-mt-28", // да не се скрива под sticky header при anchor

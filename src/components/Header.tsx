@@ -20,8 +20,8 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-brand-pink/30">
-      <nav className="relative container mx-auto md:mx-15 flex items-center justify-between px-6 py-3">
+    <header className="w-full max-w-full bg-white shadow-sm sticky top-0 z-50 border-b border-brand-pink/30">
+      <nav className="relative w-full max-w-6xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Лого – Desktop + Mobile */}
         <a
           href="#home"

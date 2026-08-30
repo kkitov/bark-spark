@@ -2,7 +2,7 @@ import Header from "./components/Header";
 import Section from "./components/Section";
 import bgDesktop from "./assets/background.jpg";
 import bgMobile from "./assets/background_mobile.jpg";
-import { BreedPrices, BathingAndAddons } from "./components/Prices";
+import PricesSection from "./components/Prices";
 import ServicesSection from "./components/Services";
 import RulesSection from "./components/Rules";
 import ContactsSection from "./components/Contact";
@@ -12,7 +12,7 @@ export default function App() {
   const background = window.innerWidth < 768 ? bgMobile : bgDesktop;
 
   return (
-    <div className="bg-white text-brand-brown">
+    <div className="w-full max-w-full overflow-x-hidden bg-white text-brand-brown">
       <Header />
 
       {/* 🏠 HOME SECTION */}
@@ -21,8 +21,8 @@ export default function App() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
         {/* Text content */}
-        <div className="relative text-center px-6">
-          <h1 className="text-6xl md:text-7xl font-lora text-white mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]">
+        <div className="relative text-center px-6 max-w-full">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-lora text-white mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)] break-words">
   Bark & Spark Grooming
 </h1>
 
@@ -41,10 +41,7 @@ export default function App() {
 
       {/* 💰 PRICES */}
       <Section id="prices" title="Цени" className="bg-brand-ecru">
-        <div className="space-y-16 max-w-5xl mx-auto w-full">
-          <BreedPrices />
-          <BathingAndAddons />
-        </div>
+        <PricesSection />
       </Section>
 
       {/* 📋 RULES */}

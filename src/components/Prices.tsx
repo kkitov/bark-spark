@@ -1,234 +1,162 @@
-import { type ReactNode } from "react";
-
-type BreedVariant = {
+type PriceItem = {
   label: string;
   price: string;
 };
 
-type BreedEntry = {
-  name: string;
-  price?: string;
-  variants?: BreedVariant[];
+type PriceCategory = {
+  title: string;
+  items: PriceItem[];
 };
 
-const BREEDS: BreedEntry[] = [
-  { name: "Акита ину", price: "65 €" },
-  { name: "Аляски маламут", price: "85 €" },
-  { name: "Английски булдог", price: "45 €" },
-  { name: "Басет хаунд", price: "45 €" },
-  { name: "Бийвър", price: "45 €" },
-  { name: "Бийгъл", price: "45 €" },
-  { name: "Бордър коли", price: "65 €" },
-  { name: "Бишон", price: "45 €" },
-  { name: "Борзой", price: "80 €" },
-  { name: "Българско овчарско куче", price: "110 €" },
-  { name: "Голдън ретривър", price: "65 €" },
-  { name: "Далматин", price: "50 €" },
+const CATEGORIES: PriceCategory[] = [
   {
-    name: "Йоркширски териер",
-    variants: [
-      { label: "до 5 кг", price: "40 €" },
-      { label: "над 5 кг", price: "45 €" },
+    title: "Късокосмести породи",
+    items: [
+      { label: "Английски булдог", price: "45 €" },
+      { label: "Бигъл, Джак Ръсел", price: "45 €" },
+      { label: "Френски булдог, Мопс", price: "35 €" },
+      { label: "Пинчер, Чихуахуа", price: "35 €" },
+      { label: "Питбул", price: "45 €" },
+      { label: "Лабрадор, Далматин", price: "55 €" },
     ],
   },
   {
-    name: "Кавалер",
-    variants: [
-      { label: "до 7 кг", price: "45 €" },
-      { label: "над 7 кг", price: "50 €" },
-    ],
-  },
-  { name: "Кокер", price: "55 €" },
-  { name: "Корги", price: "40 €" },
-  { name: "Коли", price: "70 €" },
-  { name: "Каракачанско куче", price: "110 €" },
-  { name: "Лабрадор", price: "50 €" },
-  { name: "Лагото романьоло", price: "65 €" },
-  { name: "Малтийска болонка", price: "40 €" },
-  { name: "Мопс", price: "35 €" },
-  {
-    name: "Немска овчарка",
-    price: "75 €",
-    variants: [{ label: "дългокосместа", price: "85 €" }],
-  },
-  { name: "Нюфаундленд", price: "120 €" },
-  { name: "Пекинез", price: "40 €" },
-  {
-    name: "Померан",
-    variants: [
-      { label: "до 5 кг", price: "45 €" },
-      { label: "над 5 кг", price: "50 €" },
+    title: "Двойни и плътни козини",
+    items: [
+      { label: "Померан, Малък Шпиц до 5 кг.", price: "45 €" },
+      { label: "Среден Шпиц 6–11 кг.", price: "50 €" },
+      { label: "Пекинез", price: "40 €" },
+      { label: "Корги", price: "40 €" },
+      { label: "Кавалер до 7 кг.", price: "45 €" },
+      { label: "Шнауцер /мини, среден, голям/", price: "40, 45, 50 €" },
+      { label: "Шиба ину", price: "45 €" },
+      { label: "Акита ину", price: "65 €" },
+      { label: "Бордър Коли", price: "65 €" },
+      { label: "Самоед, Хъски, Чау-Чау", price: "75 €" },
+      {
+        label: "Нюфаундленд, Санбернар, Бернска овчарка",
+        price: "120 €",
+      },
     ],
   },
   {
-    name: "Пудел",
-    variants: [
-      { label: "той, мини", price: "50 €" },
-      { label: "среден", price: "55 €" },
-      { label: "голям", price: "70 €" },
+    title: "Дълги и обемни козини",
+    items: [
+      { label: "Йорки, Болонка до 5 кг.", price: "40 €" },
+      { label: "Йорки, Болонка над 5 кг.", price: "45 €" },
+      { label: "Той Пудел до 3 кг.", price: "45 €" },
+      { label: "Мини Пудел 4–7 кг.", price: "50 €" },
+      { label: "Среден Пудел", price: "55 €" },
+      { label: "Кралски Пудел", price: "70 €" },
+      { label: "Малпипу, Кавапу", price: "50 €" },
+      { label: "Кокер Шпаньол", price: "55 €" },
+      { label: "Бишон Фризе", price: "45 €" },
+      { label: "Ши Тцу", price: "45 €" },
+      { label: "Лагото Романьоло", price: "65 €" },
+      { label: "Голдън Ретривър", price: "70 €" },
     ],
   },
-  { name: "Самоед", price: "80 €" },
-  { name: "Санбернар", price: "120 €" },
-  { name: "Уести", price: "45 €" },
-  { name: "Френски булдог", price: "35 €" },
-  { name: "Хъски", price: "75 €" },
-  { name: "Чау-чау", price: "75 €" },
-  { name: "Чихуахуа (късокосместо)", price: "35 €" },
-  { name: "Чихуахуа (дългокосместо)", price: "45 €" },
-  { name: "Ши тцу", price: "45 €" },
-  { name: "Шиба ину", price: "45 €" },
-  {
-    name: "Шнауцер",
-    variants: [
-      { label: "мини", price: "40 €" },
-      { label: "среден", price: "45 €" },
-      { label: "голям", price: "50 €" },
-    ],
-  },
-  { name: "Немски шпиц", price: "50 €" },
 ];
 
-const BATHING = [
+const BATHING: PriceItem[] = [
   { label: "до 5 кг", price: "23 €" },
   { label: "до 10 кг", price: "28 €" },
   { label: "до 20 кг", price: "40 €" },
   { label: "до 30 кг", price: "50 €" },
 ];
 
-const ADDON_SERVICES = [
+const ADDONS: PriceItem[] = [
   { label: "Рязане на нокти", price: "10 €" },
   { label: "Почистване на уши", price: "10 €" },
-  { label: "Почистване на зъбен камък", price: "50 €" },
+  { label: "Такса бълхи", price: "10–20 €" },
+  { label: "Махане на кърлеж", price: "5 €" },
+  { label: "Бебешки груминг за малки породи*", price: "35 €" },
+  { label: "Бебешки груминг за едри породи*", price: "45 €" },
+  { label: "Такса за разресване", price: "15–30 €" },
+  {
+    label: "Бръснене на силно сплъстени кучета",
+    price: "+20 € от цената",
+  },
 ];
 
-function PriceLine({
-  label,
-  price,
-  indent = false,
-}: {
-  label: string;
-  price: string;
-  indent?: boolean;
-}) {
+function PriceLine({ label, price }: PriceItem) {
   return (
-    <div
-      className={`flex items-baseline gap-2 ${indent ? "pl-4" : ""}`}
-    >
-      <span
-        className={`shrink-0 text-brand-brown ${indent ? "text-sm" : ""}`}
-      >
-        {indent ? `– ${label}` : label}
+    <div className="flex items-baseline gap-2 min-w-0 w-full">
+      <span className="min-w-0 text-brand-brown break-words">{label}</span>
+      <span className="flex-1 border-b border-dotted border-brand-beige mx-1 mb-1 min-w-4 shrink" />
+      <span className="shrink-0 font-medium text-brand-brown whitespace-nowrap text-right">
+        {price}
       </span>
-      <span className="flex-1 border-b border-dotted border-brand-beige mx-1 mb-1" />
-      <span className="shrink-0 font-medium text-brand-brown">{price}</span>
     </div>
   );
 }
 
-function BreedItem({ breed }: { breed: BreedEntry }) {
-  const hasOnlyVariants = !breed.price && !!breed.variants;
-
-  return (
-    <div className="space-y-1">
-      {!hasOnlyVariants && breed.price && (
-        <PriceLine label={breed.name} price={breed.price} />
-      )}
-      {hasOnlyVariants && (
-        <p className="font-medium text-brand-brown">{breed.name}</p>
-      )}
-      {breed.variants?.map((v) => (
-        <PriceLine
-          key={v.label}
-          label={v.label}
-          price={v.price}
-          indent={!!breed.price || hasOnlyVariants}
-        />
-      ))}
-    </div>
-  );
-}
-
-function PriceCard({
-  title,
-  children,
-}: {
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="rounded-2xl border border-brand-beige bg-white p-6 md:p-8 shadow-[0_6px_20px_rgba(75,65,57,0.08)]">
-      <div className="h-1 w-12 rounded-full bg-brand-green mb-5" />
-      <h3 className="text-2xl font-display text-brand-brown mb-6">{title}</h3>
-      {children}
-    </div>
-  );
-}
-
-export function BreedPrices() {
-  const splitAt = BREEDS.findIndex((b) => b.name === "Немска овчарка") + 1;
-  const leftColumn = BREEDS.slice(0, splitAt);
-  const rightColumn = BREEDS.slice(splitAt);
-
+function CategoryBlock({ title, items }: PriceCategory) {
   return (
     <div>
-      <h3 className="text-3xl font-display text-center mb-3 text-brand-brown">
-        Цялостен груминг по порода
+      <h3 className="inline-block mb-5 px-5 py-2 rounded-full bg-brand-green text-white text-sm md:text-base font-medium tracking-wide">
+        {title}
       </h3>
-      <p className="text-center text-brand-brown/70 mb-8 max-w-xl mx-auto text-sm">
-        Цените са за пълен груминг и могат да варират според състоянието на
-        козината и поведението на кучето.
-      </p>
-
-      <div className="rounded-2xl border border-brand-beige bg-white p-6 md:p-10 shadow-[0_6px_20px_rgba(75,65,57,0.08)]">
-        <div className="grid md:grid-cols-2 gap-x-10 gap-y-3">
-          <div className="space-y-3">
-            {leftColumn.map((breed) => (
-              <BreedItem key={breed.name} breed={breed} />
-            ))}
-          </div>
-          <div className="space-y-3">
-            {rightColumn.map((breed) => (
-              <BreedItem key={breed.name} breed={breed} />
-            ))}
-          </div>
-        </div>
+      <div className="space-y-3">
+        {items.map((item) => (
+          <PriceLine key={item.label} {...item} />
+        ))}
       </div>
     </div>
   );
 }
 
-export function BathingAndAddons() {
+export default function PricesSection() {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
-      <PriceCard title="Къпане">
-        <div className="space-y-3">
-          {BATHING.map((item) => (
-            <PriceLine key={item.label} label={item.label} price={item.price} />
-          ))}
+    <div className="max-w-3xl mx-auto w-full min-w-0 space-y-16">
+      <div className="space-y-8">
+        <div className="text-center">
+          <h3 className="text-3xl md:text-4xl font-display text-brand-brown mb-2">
+            Цялостен груминг
+          </h3>
         </div>
-      </PriceCard>
 
-      <PriceCard title="Отделни услуги">
-        <div className="space-y-3">
-          {ADDON_SERVICES.map((item) => (
-            <PriceLine key={item.label} label={item.label} price={item.price} />
+        <div className="rounded-2xl border border-brand-beige bg-white p-6 md:p-10 shadow-[0_6px_20px_rgba(75,65,57,0.08)] space-y-12">
+          {CATEGORIES.map((category) => (
+            <CategoryBlock key={category.title} {...category} />
           ))}
         </div>
-        <div className="mt-6 pt-5 border-t border-brand-beige space-y-2">
-          <p className="text-sm font-medium text-brand-brown">Условия</p>
-          <ul className="space-y-2 text-sm text-brand-brown/75">
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green" />
-              Достъпни само за кучета, записани за цялостен груминг при нас.
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green" />
-              Извършват се след преценка на грумъра на място.
-            </li>
-          </ul>
+      </div>
+
+      <div className="space-y-8">
+        <div className="text-center">
+          <h3 className="text-3xl md:text-4xl font-display text-brand-brown mb-2">
+            Къпане
+          </h3>
         </div>
-      </PriceCard>
+
+        <div className="rounded-2xl border border-brand-beige bg-white p-6 md:p-10 shadow-[0_6px_20px_rgba(75,65,57,0.08)]">
+          <div className="space-y-3">
+            {BATHING.map((item) => (
+              <PriceLine key={item.label} {...item} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-8">
+        <div className="text-center">
+          <h3 className="text-3xl md:text-4xl font-display text-brand-brown mb-2">
+            Отделни услуги
+          </h3>
+        </div>
+
+        <div className="rounded-2xl border border-brand-beige bg-white p-6 md:p-10 shadow-[0_6px_20px_rgba(75,65,57,0.08)]">
+          <div className="space-y-3">
+            {ADDONS.map((item) => (
+              <PriceLine key={item.label} {...item} />
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-brand-brown/65 italic">
+            *Бебешкият груминг е валиден до 6 месеца.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

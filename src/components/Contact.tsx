@@ -13,8 +13,8 @@ const SALON = {
   address: 'ul. "Sv. Kipriyan" 44, 1799 Sofia, Bulgaria',
   lat: "42°38'35.9\"N",
   lng: "23°21'59.0\"E",
-  instagram: "https://www.facebook.com/profile.php?id=61583855435147",
-  facebook: "https://www.instagram.com/grooming.bark.and.spark/",
+  instagram: "https://www.instagram.com/grooming.bark.and.spark/",
+  facebook: "https://www.facebook.com/profile.php?id=61583855435147",
   tiktok: "https://www.tiktok.com/@grooming.bark.and.spark",
 };
 
