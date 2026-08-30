@@ -2,11 +2,9 @@ import Header from "./components/Header";
 import Section from "./components/Section";
 import bgDesktop from "./assets/background.jpg";
 import bgMobile from "./assets/background_mobile.jpg";
-import {
-  FullGroomingTable,
-  IndividualServicesTables,
-} from "./components/Prices";
+import { BreedPrices, BathingAndAddons } from "./components/Prices";
 import ServicesSection from "./components/Services";
+import RulesSection from "./components/Rules";
 import ContactsSection from "./components/Contact";
 import FloatingCallButton from "./components/FloatingCallButton";
 
@@ -43,11 +41,15 @@ export default function App() {
 
       {/* 💰 PRICES */}
       <Section id="prices" title="Цени" className="bg-brand-ecru">
-        <div className="space-y-16">
-          <FullGroomingTable />
-
-          <IndividualServicesTables />
+        <div className="space-y-16 max-w-5xl mx-auto w-full">
+          <BreedPrices />
+          <BathingAndAddons />
         </div>
+      </Section>
+
+      {/* 📋 RULES */}
+      <Section id="rules" title="Правила" className="bg-brand-ecru">
+        <RulesSection />
       </Section>
 
       {/* 📞 CONTACTS */}

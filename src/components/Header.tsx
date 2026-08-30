@@ -8,6 +8,7 @@ export default function Header() {
     { path: "#home", label: "Начало" },
     { path: "#services", label: "Услуги" },
     { path: "#prices", label: "Цени" },
+    { path: "#rules", label: "Правила" },
     { path: "#contacts", label: "Контакти" },
   ];
 
